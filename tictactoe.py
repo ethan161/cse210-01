@@ -1,3 +1,6 @@
+#Week2 - TicTacToe
+#Ethan Blake
+
 input_loop = True
 row1 = 0
 row2 = 0
