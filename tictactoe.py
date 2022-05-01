@@ -12,21 +12,34 @@ grid = []
 grid_input = ""
 
 def create_grid(grid, grid_input, player_character):
-    grid[grid_input] = player_character
+    grid[grid_input-1] = player_character
     return grid
     
 def print_grid(grid):
+    print("\n")
     print (f"{grid[0]}|{grid[1]}|{grid[2]}")
+    print(f"-+-+-")
     print (f"{grid[3]}|{grid[4]}|{grid[5]}")
+    print(f"-+-+-")
     print (f"{grid[6]}|{grid[7]}|{grid[8]}")
 
-def check_for_win(grid,):
-    win = create_rows_columns(grid)
-    return win
-
-
-def create_rows_columns(grid):
-    if grid[0:3] or grid[3:6] == "xxx" or "ooo":
+def check_for_win(grid):
+    win = True
+    if grid[0] == grid [1] == grid[2]:
+        win = False
+    elif grid[3] == grid [4] == grid[5]:
+        win = False
+    elif grid[6] == grid [7] == grid[8]:
+        win = False
+    elif grid[0] == grid [3] == grid[6]:
+        win = False
+    elif grid[1] == grid [4] == grid[7]:
+        win = False
+    elif grid[2] == grid [5] == grid[8]:
+        win = False
+    elif grid[0] == grid [4] == grid[8]:
+        win = False
+    elif grid[2] == grid [4] == grid[6]:
         win = False
     else:
         win = True
@@ -34,24 +47,23 @@ def create_rows_columns(grid):
 
 def main():
     grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    counter = 0
-    print("hi")
     win_loop = True
+    counter = 0
     while win_loop == True:
         print_grid(grid)
         if (counter % 2) == 0:
-            player_character = "x"
+            player_character = "X"
         else:
-            player_character = "o"
-        grid_input = int(input(">>"))
+            player_character = "O"
+        grid_input = int(input("\n>> "))
         grid = create_grid(grid, grid_input, player_character)
+        print_grid(grid)
         win = check_for_win(grid)
-        if win == True:
-            counter += 1
-        else:
+        if win == False:
+            print("You win!")
             win_loop = False
-    print("You win!")
+        else:
+            counter += 1
 
-    
 if __name__ == "__main__":
     main()
